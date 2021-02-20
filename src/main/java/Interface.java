@@ -1,3 +1,14 @@
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,6 +24,8 @@ public class Interface extends javax.swing.JFrame {
     /**
      * Creates new form Interface
      */
+    
+    String nombreArchivo = "";
     public Interface() {
         initComponents();
     }
@@ -44,9 +57,11 @@ public class Interface extends javax.swing.JFrame {
         jMenu15 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu16 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTxtCodigo = new javax.swing.JTextArea();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jToolBar2 = new javax.swing.JToolBar();
         jToolBar3 = new javax.swing.JToolBar();
@@ -59,7 +74,11 @@ public class Interface extends javax.swing.JFrame {
         jToolBar8 = new javax.swing.JToolBar();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMINuevo = new javax.swing.JMenuItem();
+        jMIAbrir = new javax.swing.JMenuItem();
+        jMIGuardarC = new javax.swing.JMenuItem();
+        jMIGuardar = new javax.swing.JMenuItem();
+        jMEditar = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -98,15 +117,19 @@ public class Interface extends javax.swing.JFrame {
 
         jMenu16.setText("jMenu16");
 
+        jMenuItem2.setText("jMenuItem2");
+
+        jMenuItem3.setText("jMenuItem3");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 204, 204));
+        setBackground(new java.awt.Color(255, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Código a compilar");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTxtCodigo.setColumns(20);
+        jTxtCodigo.setRows(5);
+        jScrollPane1.setViewportView(jTxtCodigo);
 
         jTabbedPane2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
@@ -137,10 +160,48 @@ public class Interface extends javax.swing.JFrame {
         jTabbedPane3.addTab("Resultados", jToolBar8);
 
         jMenu1.setText("Archivo");
+
+        jMINuevo.setText("Nuevo");
+        jMINuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMINuevoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMINuevo);
+
+        jMIAbrir.setText("Abrir");
+        jMIAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAbrirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMIAbrir);
+
+        jMIGuardarC.setText("Guardar como");
+        jMIGuardarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIGuardarCActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMIGuardarC);
+
+        jMIGuardar.setText("Guardar");
+        jMIGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIGuardarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMIGuardar);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Editar");
-        jMenuBar1.add(jMenu2);
+        jMEditar.setText("Editar");
+        jMEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMEditarActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMEditar);
 
         jMenu3.setText("Formato");
         jMenuBar1.add(jMenu3);
@@ -187,6 +248,92 @@ public class Interface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMINuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMINuevoActionPerformed
+        // TODO add your handling code here:
+        jTxtCodigo.setText("");
+        nombreArchivo = "";
+    }//GEN-LAST:event_jMINuevoActionPerformed
+
+    private void jMIAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAbrirActionPerformed
+        // TODO add your handling code here:
+      File archivo = null;
+      FileReader fr = null;
+      BufferedReader br = null;
+      String cadena = "";
+        try {
+         // Apertura del fichero y creacion de BufferedReader para poder
+         // hacer una lectura comoda (disponer del metodo readLine()).
+         FileNameExtensionFilter filter = new FileNameExtensionFilter("Documento PDF", new String[]{"pdf"});
+        final JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(this);
+         archivo = fc.getSelectedFile();
+         nombreArchivo = archivo.getName(); 
+         fr = new FileReader (archivo);
+         br = new BufferedReader(fr);
+
+         // Lectura del fichero
+         String linea;
+         while((linea=br.readLine())!=null)
+             cadena += linea + "\n";
+            jTxtCodigo.setText(cadena);
+      }
+      catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         // En el finally cerramos el fichero, para asegurarnos
+         // que se cierra tanto si todo va bien como si salta 
+         // una excepcion.
+         try{                    
+            if( null != fr ){   
+               fr.close();     
+            }                  
+         }catch (Exception e2){ 
+            e2.printStackTrace();
+         }
+      }
+    }//GEN-LAST:event_jMIAbrirActionPerformed
+
+    private void jMIGuardarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGuardarCActionPerformed
+        // TODO add your handling code here:
+        try
+        {
+            String nombreArchivo="";
+            JFileChooser file=new JFileChooser();
+            file.showSaveDialog(this);
+            File guarda =file.getSelectedFile();
+
+            if(guarda !=null)
+            {
+                /*guardamos el archivo y le damos el formato directamente,
+                * si queremos que se guarde en formato doc lo definimos como .doc*/
+                FileWriter  save = new FileWriter(guarda+".txt");
+                save.write(jTxtCodigo.getText());
+                save.close();
+                JOptionPane.showMessageDialog(null,
+                    "El archivo se a guardado Exitosamente",
+                    "Información",JOptionPane.INFORMATION_MESSAGE);
+                nombreArchivo = guarda + ".txt";
+            }
+        }
+        catch(IOException ex)
+        {
+            JOptionPane.showMessageDialog(null,
+                "Su archivo no se ha guardado",
+                "Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jMIGuardarCActionPerformed
+
+    private void jMIGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMIGuardarActionPerformed
+
+    private void jMEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMEditarActionPerformed
+        // TODO add your handling code here:
+        
+
+    }//GEN-LAST:event_jMEditarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,6 +371,11 @@ public class Interface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMEditar;
+    private javax.swing.JMenuItem jMIAbrir;
+    private javax.swing.JMenuItem jMIGuardar;
+    private javax.swing.JMenuItem jMIGuardarC;
+    private javax.swing.JMenuItem jMINuevo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
@@ -232,7 +384,6 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu14;
     private javax.swing.JMenu jMenu15;
     private javax.swing.JMenu jMenu16;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -247,11 +398,12 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar5;
     private javax.swing.JMenuBar jMenuBar6;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JToolBar jToolBar4;
@@ -259,6 +411,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar6;
     private javax.swing.JToolBar jToolBar7;
     private javax.swing.JToolBar jToolBar8;
+    private javax.swing.JTextArea jTxtCodigo;
     private javax.swing.JLabel lblCodigoIntermedio;
     // End of variables declaration//GEN-END:variables
 }

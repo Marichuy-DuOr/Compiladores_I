@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,7 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIDefaults;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.ColorUIResource;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,9 +28,29 @@ public class Interface extends javax.swing.JFrame {
      * Creates new form Interface
      */
     
+    PintarPalabras pintarPalabras;
+    Color black;
+    Color white;
+    
     String nombreArchivo = "";
     public Interface() {
         initComponents();
+        
+        //permite cambiar el tema del editor
+        pintarPalabras = new PintarPalabras();
+        
+        //permite que cambiar background del editor de texto
+        black = new Color(66, 73, 73 );
+        white = new Color(255, 255, 255 );
+        UIDefaults defaults = new UIDefaults();
+        defaults.put("TextPane.background", new ColorUIResource(black));
+        defaults.put("TextPane[Enabled].backgroundPainter", black);
+        defaults.put("TextPane.background", new ColorUIResource(white));
+        defaults.put("TextPane[Enabled].backgroundPainter", white);
+        jTxtCodigo.putClientProperty("Nimbus.Overrides", defaults);
+        jTxtCodigo.putClientProperty("Nimbus.Overrides.InheritDefaults", true);
+        
+        jTxtCodigo.setStyledDocument(pintarPalabras.getDocClaro());
     }
 
     /**
@@ -60,8 +83,6 @@ public class Interface extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTxtCodigo = new javax.swing.JTextArea();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jToolBar2 = new javax.swing.JToolBar();
         jToolBar3 = new javax.swing.JToolBar();
@@ -72,6 +93,8 @@ public class Interface extends javax.swing.JFrame {
         jToolBar6 = new javax.swing.JToolBar();
         jToolBar7 = new javax.swing.JToolBar();
         jToolBar8 = new javax.swing.JToolBar();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTxtCodigo = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMINuevo = new javax.swing.JMenuItem();
@@ -80,6 +103,8 @@ public class Interface extends javax.swing.JFrame {
         jMIGuardar = new javax.swing.JMenuItem();
         jMEditar = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        setTemaClaro = new javax.swing.JMenuItem();
+        setTemaOscuro = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
@@ -127,10 +152,6 @@ public class Interface extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Código a compilar");
 
-        jTxtCodigo.setColumns(20);
-        jTxtCodigo.setRows(5);
-        jScrollPane1.setViewportView(jTxtCodigo);
-
         jTabbedPane2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jToolBar2.setRollover(true);
@@ -158,6 +179,8 @@ public class Interface extends javax.swing.JFrame {
 
         jToolBar8.setRollover(true);
         jTabbedPane3.addTab("Resultados", jToolBar8);
+
+        jScrollPane2.setViewportView(jTxtCodigo);
 
         jMenu1.setText("Archivo");
 
@@ -204,6 +227,23 @@ public class Interface extends javax.swing.JFrame {
         jMenuBar1.add(jMEditar);
 
         jMenu3.setText("Formato");
+
+        setTemaClaro.setText("Tema Claro");
+        setTemaClaro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setTemaClaroActionPerformed(evt);
+            }
+        });
+        jMenu3.add(setTemaClaro);
+
+        setTemaOscuro.setText("Tema Oscuro");
+        setTemaOscuro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setTemaOscuroActionPerformed(evt);
+            }
+        });
+        jMenu3.add(setTemaOscuro);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Compilar");
@@ -226,8 +266,8 @@ public class Interface extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -238,8 +278,8 @@ public class Interface extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTabbedPane2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                 .addContainerGap())
@@ -334,6 +374,23 @@ public class Interface extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMEditarActionPerformed
 
+    private void setTemaClaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTemaClaroActionPerformed
+        // TODO add your handling code here:
+        jTxtCodigo.setBackground(white);
+        String temp = jTxtCodigo.getText();
+        jTxtCodigo.setStyledDocument(pintarPalabras.getDocClaro());
+        jTxtCodigo.setText(temp);
+    }//GEN-LAST:event_setTemaClaroActionPerformed
+
+    private void setTemaOscuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTemaOscuroActionPerformed
+        // TODO add your handling code here:
+        jTxtCodigo.setBackground(black);
+        // jTextPane1.setForeground(Color.BLACK);
+        String temp = jTxtCodigo.getText();
+        jTxtCodigo.setStyledDocument(pintarPalabras.getDocOscuro());
+        jTxtCodigo.setText(temp);
+    }//GEN-LAST:event_setTemaOscuroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -401,7 +458,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JToolBar jToolBar2;
@@ -411,7 +468,9 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar6;
     private javax.swing.JToolBar jToolBar7;
     private javax.swing.JToolBar jToolBar8;
-    private javax.swing.JTextArea jTxtCodigo;
+    private javax.swing.JTextPane jTxtCodigo;
     private javax.swing.JLabel lblCodigoIntermedio;
+    private javax.swing.JMenuItem setTemaClaro;
+    private javax.swing.JMenuItem setTemaOscuro;
     // End of variables declaration//GEN-END:variables
 }

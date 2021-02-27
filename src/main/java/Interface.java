@@ -6,9 +6,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 
@@ -27,6 +31,8 @@ public class Interface extends javax.swing.JFrame {
     /**
      * Creates new form Interface
      */
+    NumeroLinea numLinea;
+    File archivo = null;
     
     PintarPalabras pintarPalabras;
     Color black;
@@ -35,6 +41,8 @@ public class Interface extends javax.swing.JFrame {
     String nombreArchivo = "";
     public Interface() {
         initComponents();
+        numLinea = new NumeroLinea(jTxtCodigo);
+        jScrollPane2.setRowHeaderView(numLinea);
         
         //permite cambiar el tema del editor
         pintarPalabras = new PintarPalabras();
@@ -152,6 +160,7 @@ public class Interface extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Código a compilar");
 
+        jTabbedPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTabbedPane2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jToolBar2.setRollover(true);
@@ -168,6 +177,7 @@ public class Interface extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Código intermedio", jToolBar5);
 
+        jTabbedPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTabbedPane3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jToolBar6.setRollover(true);
@@ -180,10 +190,12 @@ public class Interface extends javax.swing.JFrame {
         jToolBar8.setRollover(true);
         jTabbedPane3.addTab("Resultados", jToolBar8);
 
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane2.setViewportView(jTxtCodigo);
 
         jMenu1.setText("Archivo");
 
+        jMINuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMINuevo.setText("Nuevo");
         jMINuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,6 +204,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu1.add(jMINuevo);
 
+        jMIAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMIAbrir.setText("Abrir");
         jMIAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +213,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu1.add(jMIAbrir);
 
+        jMIGuardarC.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMIGuardarC.setText("Guardar como");
         jMIGuardarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,6 +222,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu1.add(jMIGuardarC);
 
+        jMIGuardar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMIGuardar.setText("Guardar");
         jMIGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,7 +311,7 @@ public class Interface extends javax.swing.JFrame {
 
     private void jMIAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAbrirActionPerformed
         // TODO add your handling code here:
-      File archivo = null;
+     
       FileReader fr = null;
       BufferedReader br = null;
       String cadena = "";
@@ -366,6 +381,17 @@ public class Interface extends javax.swing.JFrame {
 
     private void jMIGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGuardarActionPerformed
         // TODO add your handling code here:
+        FileWriter fileOut;
+        try {
+            fileOut = new FileWriter(archivo.getCanonicalPath());
+            fileOut.write(jTxtCodigo.getText());
+            fileOut.close();
+            JOptionPane.showMessageDialog(null,
+                "Cambios guardados",
+                "Información",JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMIGuardarActionPerformed
 
     private void jMEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMEditarActionPerformed
@@ -419,10 +445,14 @@ public class Interface extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Interface().setVisible(true);
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            new Interface().setVisible(true);
         });
     }
 

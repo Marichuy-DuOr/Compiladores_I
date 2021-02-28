@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Action;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIDefaults;
@@ -15,7 +16,10 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
-
+import javax.swing.text.DefaultEditorKit;
+import javax.swing.JMenuItem;
+import javax.swing.undo.CannotRedoException;
+import javax.swing.undo.UndoManager;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -26,8 +30,12 @@ import javax.swing.plaf.ColorUIResource;
  *
  * @author maria
  */
-public class Interface extends javax.swing.JFrame {
 
+public class Interface extends javax.swing.JFrame {
+  
+  
+     
+    
     /**
      * Creates new form Interface
      */
@@ -39,6 +47,8 @@ public class Interface extends javax.swing.JFrame {
     Color white;
     
     String nombreArchivo = "";
+    private String textoCopiado;
+    
     public Interface() {
         initComponents();
         numLinea = new NumeroLinea(jTxtCodigo);
@@ -59,7 +69,11 @@ public class Interface extends javax.swing.JFrame {
         jTxtCodigo.putClientProperty("Nimbus.Overrides.InheritDefaults", true);
         
         jTxtCodigo.setStyledDocument(pintarPalabras.getDocClaro());
+       
+        
     }
+        
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,6 +104,7 @@ public class Interface extends javax.swing.JFrame {
         jMenu16 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jToolBar2 = new javax.swing.JToolBar();
@@ -110,6 +125,10 @@ public class Interface extends javax.swing.JFrame {
         jMIGuardarC = new javax.swing.JMenuItem();
         jMIGuardar = new javax.swing.JMenuItem();
         jMEditar = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        Copiar = new javax.swing.JMenuItem();
+        Pegar = new javax.swing.JMenuItem();
+        Jdeshacer = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         setTemaClaro = new javax.swing.JMenuItem();
         setTemaOscuro = new javax.swing.JMenuItem();
@@ -153,6 +172,8 @@ public class Interface extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         jMenuItem3.setText("jMenuItem3");
+
+        jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 0, 0));
@@ -239,6 +260,39 @@ public class Interface extends javax.swing.JFrame {
                 jMEditarActionPerformed(evt);
             }
         });
+
+        jMenuItem5.setText("Cortar");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMEditar.add(jMenuItem5);
+
+        Copiar.setText("Copiar");
+        Copiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiarActionPerformed(evt);
+            }
+        });
+        jMEditar.add(Copiar);
+
+        Pegar.setText("Pegar");
+        Pegar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PegarActionPerformed(evt);
+            }
+        });
+        jMEditar.add(Pegar);
+
+        Jdeshacer.setText("Deshacer");
+        Jdeshacer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JdeshacerActionPerformed(evt);
+            }
+        });
+        jMEditar.add(Jdeshacer);
+
         jMenuBar1.add(jMEditar);
 
         jMenu3.setText("Formato");
@@ -395,7 +449,7 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIGuardarActionPerformed
 
     private void jMEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMEditarActionPerformed
-        // TODO add your handling code here:
+       
         
 
     }//GEN-LAST:event_jMEditarActionPerformed
@@ -417,9 +471,32 @@ public class Interface extends javax.swing.JFrame {
         jTxtCodigo.setText(temp);
     }//GEN-LAST:event_setTemaOscuroActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+            Action cut = new DefaultEditorKit.CutAction();
+             cut.actionPerformed(evt);
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void CopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarActionPerformed
+            Action copy= new DefaultEditorKit.CopyAction();
+            copy.actionPerformed(evt);
+    }//GEN-LAST:event_CopiarActionPerformed
+
+    private void PegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PegarActionPerformed
+         Action paste= new DefaultEditorKit.PasteAction();
+         paste.actionPerformed(evt);
+    }//GEN-LAST:event_PegarActionPerformed
+
+    private void JdeshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JdeshacerActionPerformed
+        
+    }//GEN-LAST:event_JdeshacerActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -457,6 +534,9 @@ public class Interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Copiar;
+    private javax.swing.JMenuItem Jdeshacer;
+    private javax.swing.JMenuItem Pegar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMEditar;
     private javax.swing.JMenuItem jMIAbrir;
@@ -487,6 +567,8 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;

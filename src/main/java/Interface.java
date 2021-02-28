@@ -361,6 +361,7 @@ public class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
         jTxtCodigo.setText("");
         nombreArchivo = "";
+        archivo = null;
     }//GEN-LAST:event_jMINuevoActionPerformed
 
     private void jMIAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAbrirActionPerformed
@@ -409,15 +410,19 @@ public class Interface extends javax.swing.JFrame {
             String nombreArchivo="";
             JFileChooser file=new JFileChooser();
             file.showSaveDialog(this);
-            File guarda =file.getSelectedFile();
+            File guarda = file.getSelectedFile();
 
             if(guarda !=null)
             {
                 /*guardamos el archivo y le damos el formato directamente,
                 * si queremos que se guarde en formato doc lo definimos como .doc*/
-                FileWriter  save = new FileWriter(guarda+".txt");
+                
+                FileWriter  save = new FileWriter(guarda + ".txt");
                 save.write(jTxtCodigo.getText());
                 save.close();
+                
+                archivo = new File(guarda + ".txt");
+                
                 JOptionPane.showMessageDialog(null,
                     "El archivo se a guardado Exitosamente",
                     "Información",JOptionPane.INFORMATION_MESSAGE);
@@ -436,13 +441,18 @@ public class Interface extends javax.swing.JFrame {
     private void jMIGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGuardarActionPerformed
         // TODO add your handling code here:
         FileWriter fileOut;
+        
         try {
-            fileOut = new FileWriter(archivo.getCanonicalPath());
-            fileOut.write(jTxtCodigo.getText());
-            fileOut.close();
-            JOptionPane.showMessageDialog(null,
-                "Cambios guardados",
-                "Información",JOptionPane.INFORMATION_MESSAGE);
+            if (archivo == null){
+                jMIGuardarCActionPerformed(evt);
+            } else {
+                fileOut = new FileWriter(archivo.getCanonicalPath());
+                fileOut.write(jTxtCodigo.getText());
+                fileOut.close();
+                JOptionPane.showMessageDialog(null,
+                    "Cambios guardados",
+                    "Información",JOptionPane.INFORMATION_MESSAGE);
+            }
         } catch (IOException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }

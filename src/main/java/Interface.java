@@ -128,7 +128,6 @@ public class Interface extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         Copiar = new javax.swing.JMenuItem();
         Pegar = new javax.swing.JMenuItem();
-        Jdeshacer = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         setTemaClaro = new javax.swing.JMenuItem();
         setTemaOscuro = new javax.swing.JMenuItem();
@@ -216,7 +215,7 @@ public class Interface extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
-        jMINuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMINuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMINuevo.setText("Nuevo");
         jMINuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +224,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu1.add(jMINuevo);
 
-        jMIAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMIAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
         jMIAbrir.setText("Abrir");
         jMIAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +233,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu1.add(jMIAbrir);
 
-        jMIGuardarC.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMIGuardarC.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMIGuardarC.setText("Guardar como");
         jMIGuardarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,7 +242,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jMenu1.add(jMIGuardarC);
 
-        jMIGuardar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMIGuardar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         jMIGuardar.setText("Guardar");
         jMIGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,6 +260,7 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem5.setText("Cortar");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +269,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jMEditar.add(jMenuItem5);
 
+        Copiar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         Copiar.setText("Copiar");
         Copiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,6 +278,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jMEditar.add(Copiar);
 
+        Pegar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         Pegar.setText("Pegar");
         Pegar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,14 +286,6 @@ public class Interface extends javax.swing.JFrame {
             }
         });
         jMEditar.add(Pegar);
-
-        Jdeshacer.setText("Deshacer");
-        Jdeshacer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JdeshacerActionPerformed(evt);
-            }
-        });
-        jMEditar.add(Jdeshacer);
 
         jMenuBar1.add(jMEditar);
 
@@ -497,10 +491,6 @@ public class Interface extends javax.swing.JFrame {
          paste.actionPerformed(evt);
     }//GEN-LAST:event_PegarActionPerformed
 
-    private void JdeshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JdeshacerActionPerformed
-        
-    }//GEN-LAST:event_JdeshacerActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -545,7 +535,6 @@ public class Interface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Copiar;
-    private javax.swing.JMenuItem Jdeshacer;
     private javax.swing.JMenuItem Pegar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMEditar;

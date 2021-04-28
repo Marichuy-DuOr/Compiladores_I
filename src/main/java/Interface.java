@@ -1,11 +1,11 @@
 
 import java.awt.Color;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
@@ -17,9 +17,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.text.DefaultEditorKit;
-import javax.swing.JMenuItem;
-import javax.swing.undo.CannotRedoException;
-import javax.swing.undo.UndoManager;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -108,6 +105,8 @@ public class Interface extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jToolBar2 = new javax.swing.JToolBar();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextLexico = new javax.swing.JTextPane();
         jToolBar3 = new javax.swing.JToolBar();
         jToolBar4 = new javax.swing.JToolBar();
         jToolBar5 = new javax.swing.JToolBar();
@@ -132,6 +131,7 @@ public class Interface extends javax.swing.JFrame {
         setTemaClaro = new javax.swing.JMenuItem();
         setTemaOscuro = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        compilar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         jMenu6.setText("File");
@@ -184,6 +184,12 @@ public class Interface extends javax.swing.JFrame {
         jTabbedPane2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jToolBar2.setRollover(true);
+
+        jTextLexico.setEditable(false);
+        jScrollPane1.setViewportView(jTextLexico);
+
+        jToolBar2.add(jScrollPane1);
+
         jTabbedPane2.addTab("Léxico", jToolBar2);
 
         jToolBar3.setRollover(true);
@@ -310,6 +316,15 @@ public class Interface extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Compilar");
+
+        compilar.setText("Compilar");
+        compilar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compilarActionPerformed(evt);
+            }
+        });
+        jMenu4.add(compilar);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Ayuda");
@@ -361,7 +376,7 @@ public class Interface extends javax.swing.JFrame {
     private void jMIAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAbrirActionPerformed
         // TODO add your handling code here:
      
-      FileReader fr = null;
+      InputStreamReader fr = null;
       BufferedReader br = null;
       String cadena = "";
         try {
@@ -372,7 +387,8 @@ public class Interface extends javax.swing.JFrame {
         fc.showOpenDialog(this);
          archivo = fc.getSelectedFile();
          nombreArchivo = archivo.getName(); 
-         fr = new FileReader (archivo);
+         // fr = new FileReader (archivo);
+         fr = new InputStreamReader(new FileInputStream(archivo), "UTF-8");
          br = new BufferedReader(fr);
 
          // Lectura del fichero
@@ -491,6 +507,53 @@ public class Interface extends javax.swing.JFrame {
          paste.actionPerformed(evt);
     }//GEN-LAST:event_PegarActionPerformed
 
+    private void compilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compilarActionPerformed
+        // TODO add your handling code here:
+        try{
+           /* directorio/ejecutable es el path del ejecutable y un nombre */            
+           jMIGuardarActionPerformed(evt);
+           
+           /*Process p = Runtime.getRuntime().exec ("compilador", new String []{archivo.getAbsolutePath()});
+           p.wait();
+           p.getOutputStream();*/
+           Runtime rt = Runtime.getRuntime();
+            // String[] commands = {"D:\\documentos\\8vo\\compiladores\\c sharp\\compilador\\compilador\\bin\\Debug\\netcoreapp3.1\\compilador.exe", archivo.getAbsolutePath()};
+            String[] commands = {"compilador\\compilador\\bin\\Debug\\netcoreapp3.1\\compilador.exe", archivo.getAbsolutePath()};
+            Process proc = rt.exec(commands);
+
+            BufferedReader stdInput = new BufferedReader(new 
+                 InputStreamReader(proc.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new 
+                 InputStreamReader(proc.getErrorStream()));
+
+            // Read the output from the command
+            System.out.println("Here is the standard output of the command:\n");
+            String s = null;
+            
+            String resultado = "";
+            
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+                resultado = resultado + "\n" + s;
+            }
+            
+            // Read any errors from the attempted command
+            System.out.println("Here is the standard error of the command (if any):\n");
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+                resultado = resultado + s + "\n";
+            }
+            
+            jTextLexico.setText(resultado);
+            
+           
+        } catch (Exception e) {
+           /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
+            System.out.println("Un errorsin");
+        }
+    }//GEN-LAST:event_compilarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -536,6 +599,7 @@ public class Interface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Copiar;
     private javax.swing.JMenuItem Pegar;
+    private javax.swing.JMenuItem compilar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMEditar;
     private javax.swing.JMenuItem jMIAbrir;
@@ -569,9 +633,11 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTextPane jTextLexico;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JToolBar jToolBar4;

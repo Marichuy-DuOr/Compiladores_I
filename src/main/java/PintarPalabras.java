@@ -20,7 +20,7 @@ public class PintarPalabras {
     DefaultStyledDocument docClaro;
     DefaultStyledDocument docOscuro;
     
-    final String reservadas = "(\\W)*(private|public|protected|final|super|class|int|if|while|else|return|break|int|char|float|for|void|bool)";
+    final String reservadas = "(\\W)*(program|if|else|fi|do|until|while|read|write|float|int|bool|not|and|or)";
 
     public PintarPalabras() {
         final StyleContext cont = StyleContext.getDefaultStyleContext();

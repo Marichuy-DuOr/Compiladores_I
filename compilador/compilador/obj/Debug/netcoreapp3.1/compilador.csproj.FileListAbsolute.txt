@@ -1,0 +1,22 @@
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.exe
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.deps.json
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.runtimeconfig.json
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.runtimeconfig.dev.json
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.dll
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.pdb
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\obj\Debug\netcoreapp3.1\compilador.AssemblyInfoInputs.cache
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\obj\Debug\netcoreapp3.1\compilador.AssemblyInfo.cs
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\obj\Debug\netcoreapp3.1\compilador.dll
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\obj\Debug\netcoreapp3.1\compilador.pdb
+D:\documentos\8vo\compiladores\c sharp\compilador\compilador\obj\Debug\netcoreapp3.1\compilador.csprojAssemblyReference.cache
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\obj\Debug\netcoreapp3.1\compilador.csprojAssemblyReference.cache
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\obj\Debug\netcoreapp3.1\compilador.AssemblyInfoInputs.cache
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\obj\Debug\netcoreapp3.1\compilador.AssemblyInfo.cs
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\obj\Debug\netcoreapp3.1\compilador.dll
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\obj\Debug\netcoreapp3.1\compilador.pdb
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.exe
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.deps.json
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.runtimeconfig.json
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.runtimeconfig.dev.json
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.dll
+D:\documentos\8vo\compiladores\java\Compiladores_I\compilador\compilador\bin\Debug\netcoreapp3.1\compilador.pdb

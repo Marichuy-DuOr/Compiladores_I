@@ -1,3 +1,5 @@
+package gui;
+
 
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -6,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
@@ -108,12 +111,16 @@ public class Interface extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextLexico = new javax.swing.JTextPane();
         jToolBar3 = new javax.swing.JToolBar();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextSintactico = new javax.swing.JTextPane();
         jToolBar4 = new javax.swing.JToolBar();
         jToolBar5 = new javax.swing.JToolBar();
         lblCodigoIntermedio = new javax.swing.JLabel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jToolBar6 = new javax.swing.JToolBar();
         jToolBar7 = new javax.swing.JToolBar();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextErrores = new javax.swing.JTextPane();
         jToolBar8 = new javax.swing.JToolBar();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTxtCodigo = new javax.swing.JTextPane();
@@ -193,6 +200,11 @@ public class Interface extends javax.swing.JFrame {
         jTabbedPane2.addTab("Léxico", jToolBar2);
 
         jToolBar3.setRollover(true);
+
+        jScrollPane3.setViewportView(jTextSintactico);
+
+        jToolBar3.add(jScrollPane3);
+
         jTabbedPane2.addTab("Sintáctico", jToolBar3);
 
         jToolBar4.setRollover(true);
@@ -210,6 +222,10 @@ public class Interface extends javax.swing.JFrame {
 
         jToolBar7.setRollover(true);
         jToolBar6.add(jToolBar7);
+
+        jScrollPane4.setViewportView(jTextErrores);
+
+        jToolBar6.add(jScrollPane4);
 
         jTabbedPane3.addTab("Errores", jToolBar6);
 
@@ -531,26 +547,45 @@ public class Interface extends javax.swing.JFrame {
             System.out.println("Here is the standard output of the command:\n");
             String s = null;
             
+            
+            ArrayList<String> resultados = new ArrayList<>();
             String resultado = "";
             
             while ((s = stdInput.readLine()) != null) {
                 System.out.println(s);
-                resultado = resultado + "\n" + s;
+                resultados.add(s);
+                // resultado = resultado + "\n" + s;
             }
             
             // Read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
             while ((s = stdError.readLine()) != null) {
                 System.out.println(s);
                 resultado = resultado + s + "\n";
             }
             
+            jTextErrores.setText(resultado);
+            
+            resultado = "";
+            int i = 0;
+            
+            while (!resultados.get(i).equals("sintactico") && i < resultados.size()){
+                resultado = resultado + "\n" + resultados.get(i);
+                i++;
+            }
             jTextLexico.setText(resultado);
+            
+            resultado = "";
+            
+            while ( i < resultados.size()){
+                resultado = resultado + "\n" + resultados.get(i);
+                i++;
+            }
+            jTextSintactico.setText(resultado);
             
            
         } catch (Exception e) {
            /* Se lanza una excepción si no se encuentra en ejecutable o el fichero no es ejecutable. */
-            System.out.println("Un errorsin");
+            System.out.println("Un errorsin " + e);
         }
     }//GEN-LAST:event_compilarActionPerformed
 
@@ -635,9 +670,13 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTextPane jTextErrores;
     private javax.swing.JTextPane jTextLexico;
+    private javax.swing.JTextPane jTextSintactico;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JToolBar jToolBar4;

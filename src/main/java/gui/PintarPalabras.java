@@ -1,3 +1,5 @@
+package gui;
+
 
 import java.awt.Color;
 import javax.swing.text.AttributeSet;

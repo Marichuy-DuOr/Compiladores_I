@@ -1,56 +1,86 @@
 int
-    x
-    y
+    a
+    b
 float
-    a
-    b
-=
     x
-    5
-=
     y
-    4
-=
-    a
-    0.0
-=
-    b
-    3.0
+bool
+    z
+    w
 do
     if
-          <
-                x
-                y
-          {
-                then
-          =
-                y
-                -
-                      y
-                      1
-          =
-                x
-                -
-                      x
-                      2
-          =
-                a
-                +
-                      *
-                            a
-                            x
-                      b
-          =
-                y
-                -
-                      y
-                      1
-    while
           ==
                 a
-                3
+                0
+          int
+                m
+                n
+          read
+                x
+          read
+                y
+          =
+                m
+                +
+                      8
+                      1
           write
+                +
+                      x
+                      y
+          int
+                m
+                n
+          read
+                x
+          write
+                x
+          write
+                -
+                      x
+                      *
+                            1.58785
+                            /
+                                  20
+                                  x
+    =
+          x
+          +
+                27.33
+                b
+    <
+          a
+          b
+while
+    and
+          z
+          w
+    int
+          m
+          n
+    read
+          x
+    write
+          x
+    write
+          -
+                x
+                *
+                      1.58785
+                      /
+                            20
+                            x
+=
+    z
+    1
+=
+    z
+    and
+          and
+                z
+                w
+          <
                 a
-    >=
-          y
-          0
+                /
+                      x
+                      y

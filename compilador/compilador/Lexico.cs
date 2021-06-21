@@ -87,7 +87,7 @@ namespace compilador
 				foreach (Token elToken in lista)
 				{
 					sw.WriteLine("Lexema: " + elToken.lexema +"	Tipo: "+ elToken.tipo + "	Linea: " + elToken.linea + "	Columna: "+ elToken.columna);
-					// Console.WriteLine("Lexema: " + elToken.lexema + "	Tipo: " + elToken.tipo + "	Linea: " + elToken.linea + "	Columna: " + elToken.columna);
+					Console.WriteLine("Lexema: " + elToken.lexema + "	Tipo: " + elToken.tipo + "	Linea: " + elToken.linea + "	Columna: " + elToken.columna);
 				}
 				sw.Close();
 			}

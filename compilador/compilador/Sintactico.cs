@@ -66,7 +66,7 @@ namespace compilador
                 {
                     token = getToken2();
                 }
-                Console.WriteLine("sysntaxis error en match" + token.lexema + token.linea + token.tipo + expected);
+                Console.WriteLine("sysntaxis error en match " + token.lexema +" "+ token.linea + " " + token.tipo + " " + expected);
             }
         }
 
@@ -384,7 +384,7 @@ namespace compilador
                 } 
                 else
                 {
-                    Console.WriteLine("Sintaxis error declaration stmt" + token.lexema + " " + token.linea);
+                    Console.WriteLine("Sintaxis error declaration stmt " + token.lexema + " " + token.linea);
                 }
 
                 match(Token.Token_types.TKN_ID);

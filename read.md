@@ -6,5 +6,5 @@ El código de prueba esta en el archivo prueba.txt
 Los resultados de la compilación estan en los archivos
 tokens.txt, tree.txt
 
-El proyecto es el IDE de java, el compilador en c# esta en la carpeta 
+El proyecto es el IDE en java, el compilador en c# esta en la carpeta 
 ./compilador

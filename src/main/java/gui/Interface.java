@@ -19,6 +19,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.text.DefaultCaret;
 import javax.swing.text.DefaultEditorKit;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -106,6 +107,13 @@ public class Interface extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jToolBar6 = new javax.swing.JToolBar();
+        jToolBar7 = new javax.swing.JToolBar();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextErrores = new javax.swing.JTextPane();
+        jToolBar8 = new javax.swing.JToolBar();
+        jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jToolBar2 = new javax.swing.JToolBar();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -114,14 +122,13 @@ public class Interface extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextSintactico = new javax.swing.JTextPane();
         jToolBar4 = new javax.swing.JToolBar();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextSemantico = new javax.swing.JTextPane();
         jToolBar5 = new javax.swing.JToolBar();
         lblCodigoIntermedio = new javax.swing.JLabel();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
-        jToolBar6 = new javax.swing.JToolBar();
-        jToolBar7 = new javax.swing.JToolBar();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextErrores = new javax.swing.JTextPane();
-        jToolBar8 = new javax.swing.JToolBar();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextCodigo = new javax.swing.JTextPane();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTxtCodigo = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -187,34 +194,6 @@ public class Interface extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Código a compilar");
 
-        jTabbedPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTabbedPane2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
-        jToolBar2.setRollover(true);
-
-        jTextLexico.setEditable(false);
-        jScrollPane1.setViewportView(jTextLexico);
-
-        jToolBar2.add(jScrollPane1);
-
-        jTabbedPane2.addTab("Léxico", jToolBar2);
-
-        jToolBar3.setRollover(true);
-
-        jScrollPane3.setViewportView(jTextSintactico);
-
-        jToolBar3.add(jScrollPane3);
-
-        jTabbedPane2.addTab("Sintáctico", jToolBar3);
-
-        jToolBar4.setRollover(true);
-        jTabbedPane2.addTab("Semántico", jToolBar4);
-
-        jToolBar5.setRollover(true);
-        jToolBar5.add(lblCodigoIntermedio);
-
-        jTabbedPane2.addTab("Código intermedio", jToolBar5);
-
         jTabbedPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTabbedPane3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
@@ -232,8 +211,81 @@ public class Interface extends javax.swing.JFrame {
         jToolBar8.setRollover(true);
         jTabbedPane3.addTab("Resultados", jToolBar8);
 
+        jTabbedPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jTabbedPane2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jToolBar2.setRollover(true);
+
+        jTextLexico.setEditable(false);
+        jScrollPane1.setViewportView(jTextLexico);
+
+        jToolBar2.add(jScrollPane1);
+
+        jTabbedPane2.addTab("Léxico", jToolBar2);
+
+        jToolBar3.setRollover(true);
+
+        jTextSintactico.setEditable(false);
+        jTextSintactico.setAutoscrolls(false);
+        jScrollPane3.setViewportView(jTextSintactico);
+
+        jToolBar3.add(jScrollPane3);
+
+        jTabbedPane2.addTab("Sintáctico", jToolBar3);
+
+        jToolBar4.setRollover(true);
+
+        jTextSemantico.setEditable(false);
+        jScrollPane5.setViewportView(jTextSemantico);
+
+        jToolBar4.add(jScrollPane5);
+
+        jTabbedPane2.addTab("Semántico", jToolBar4);
+
+        jToolBar5.setRollover(true);
+        jToolBar5.add(lblCodigoIntermedio);
+
+        jScrollPane6.setViewportView(jTextCodigo);
+
+        jToolBar5.add(jScrollPane6);
+
+        jTabbedPane2.addTab("Código intermedio", jToolBar5);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 13, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane2.setViewportView(jTxtCodigo);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jMenu1.setText("Archivo");
 
@@ -355,14 +407,14 @@ public class Interface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane3)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -372,11 +424,11 @@ public class Interface extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addGap(18, 18, 18)
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -565,6 +617,13 @@ public class Interface extends javax.swing.JFrame {
             
             jTextErrores.setText(resultado);
             
+            DefaultCaret caret = (DefaultCaret)jTextLexico.getCaret();
+            caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+            DefaultCaret caret2 = (DefaultCaret)jTextSintactico.getCaret();
+            caret2.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+            DefaultCaret caret3 = (DefaultCaret)jTextSemantico.getCaret();
+            caret3.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+            
             resultado = "";
             int i = 0;
             
@@ -576,11 +635,27 @@ public class Interface extends javax.swing.JFrame {
             
             resultado = "";
             
-            while ( i < resultados.size()){
+            while (!resultados.get(i).equals("semantico") && i < resultados.size()){
                 resultado = resultado + "\n" + resultados.get(i);
                 i++;
             }
             jTextSintactico.setText(resultado);
+            
+            resultado = "";
+            
+            while (!resultados.get(i).equals("codigoIntermedio") && i < resultados.size()){
+                resultado = resultado + "\n" + resultados.get(i);
+                i++;
+            }
+            jTextSemantico.setText(resultado);
+            
+            resultado = "";
+            
+            while ( i < resultados.size()){
+                resultado = resultado + "\n" + resultados.get(i);
+                i++;
+            }
+            jTextCodigo.setText(resultado);
             
            
         } catch (Exception e) {
@@ -667,15 +742,21 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTextPane jTextCodigo;
     private javax.swing.JTextPane jTextErrores;
     private javax.swing.JTextPane jTextLexico;
+    private javax.swing.JTextPane jTextSemantico;
     private javax.swing.JTextPane jTextSintactico;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JToolBar jToolBar3;
